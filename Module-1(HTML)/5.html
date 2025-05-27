@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Event Registration Form</title>
+<style>
+  form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+  }
+  label {
+    display: block;
+    margin-top: 1rem;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  button {
+    margin-top: 1.5rem;
+    background-color: #007bff;
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  output {
+    display: block;
+    margin-top: 1rem;
+    color: green;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<form id="registrationForm">
+  <h2>Register for an Event</h2>
+  
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Your full name" required autofocus />
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+  <label for="date">Event Date:</label>
+  <input type="date" id="date" name="date" required />
+
+  <label for="eventType">Event Type:</label>
+  <select id="eventType" name="eventType" required>
+    <option value="">--Select an event--</option>
+    <option value="picnic">Community Picnic</option>
+    <option value="run">Charity Run</option>
+    <option value="music">Music Festival</option>
+  </select>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" placeholder="Any questions or notes..." rows="4"></textarea>
+
+  <button type="submit">Submit</button>
+
+  <output id="confirmationMsg" for="registrationForm"></output>
+</form>
+
+<script>
+  const form = document.getElementById('registrationForm');
+  const output = document.getElementById('confirmationMsg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = form.name.value;
+    const eventType = form.eventType.options[form.eventType.selectedIndex].text;
+    output.textContent = `Thank you, ${name}, for registering for the ${eventType}. We will contact you soon!`;
+    form.reset();
+  });
+</script>
+
+</body>
+</html>

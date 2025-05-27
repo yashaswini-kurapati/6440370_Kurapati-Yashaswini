@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debugging</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .container {
+      border: 2px solid #444;
+      padding: 20px;
+      width: 500px;
+    }
+
+    .wrong-class {
+      width: 100%; /* Intended to be 50% — fix in DevTools */
+      color: red;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: blue;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Debugging</h2>
+
+  <div class="container">
+    <p class="wrong-class">This paragraph is styled incorrectly. Use DevTools to fix it.</p>
+
+    <label for="num">Enter a number:</label>
+    <input type="text" id="num" placeholder="e.g., 5"><br><br>
+
+    <button onclick="calculateSquare()">Calculate Square</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function calculateSquare() {
+      const input = document.getElementById('num').value;
+
+      // Log input for debugging
+      console.log("User entered:", input);
+
+      // Intentional bug: using 'x' instead of 'input'
+      try {
+        const square = x * x;  // Bug: x is not defined
+        document.getElementById('result').textContent = "Square: " + square;
+      } catch (error) {
+        console.error("Error occurred:", error);
+        document.getElementById('result').textContent = "Something went wrong. Check console.";
+      }
+    }
+  </script>
+
+</body>
+</html>

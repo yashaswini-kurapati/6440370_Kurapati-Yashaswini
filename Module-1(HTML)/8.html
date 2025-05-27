@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Save User Preferences</title>
+</head>
+<body>
+
+<label for="eventSelect">Select Preferred Event:</label>
+<select id="eventSelect">
+  <option value="">--Choose an event--</option>
+  <option value="picnic">Community Picnic</option>
+  <option value="run">Charity Run</option>
+  <option value="music">Music Festival</option>
+</select>
+
+<button id="clearPrefs">Clear Preferences</button>
+
+<script>
+  const select = document.getElementById('eventSelect');
+  const clearBtn = document.getElementById('clearPrefs');
+
+  // Load from localStorage on page load
+  window.onload = () => {
+    const saved = localStorage.getItem('preferredEvent');
+    if (saved) {
+      select.value = saved;
+    }
+  };
+
+  // Save preference on change
+  select.addEventListener('change', () => {
+    localStorage.setItem('preferredEvent', select.value);
+    sessionStorage.setItem('preferredEventSession', select.value);
+  });
+
+  // Clear both storages
+  clearBtn.addEventListener('click', () => {
+    localStorage.removeItem('preferredEvent');
+    sessionStorage.removeItem('preferredEventSession');
+    select.value = '';
+    alert('Preferences cleared');
+  });
+</script>
+
+</body>
+</html>

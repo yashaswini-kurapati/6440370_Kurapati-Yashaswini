@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    input, select, textarea {
+      padding: 8px;
+      margin: 10px 0;
+      width: 300px;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+    #promo-img {
+      width: 300px;
+      height: 200px;
+      border: 2px solid #555;
+      transition: transform 0.3s ease;
+      margin-top: 20px;
+    }
+    #promo-img.enlarged {
+      transform: scale(1.5);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Event Feedback Form</h2>
+
+  <label for="phone">Phone Number:</label><br>
+  <input type="text" id="phone" placeholder="Enter 10-digit phone" onblur="validatePhone()">
+  <div id="phone-error" class="error"></div><br>
+
+  <label for="event-select">Choose an Event:</label><br>
+  <select id="event-select" onchange="showFee()">
+    <option value="">--Select--</option>
+    <option value="100">Cultural Dance - ₹100</option>
+    <option value="150">Food Festival - ₹150</option>
+    <option value="120">Music Night - ₹120</option>
+  </select><br>
+  <div id="fee-display"></div><br>
+
+  <label for="feedback">Your Feedback:</label><br>
+  <textarea id="feedback" rows="4" onkeyup="countChars()" placeholder="Type your feedback..."></textarea><br>
+  <div>Characters typed: <span id="char-count">0</span></div><br>
+
+  <button onclick="submitForm()">Submit</button><br><br>
+
+  <p><strong>Double-click the image to enlarge:</strong></p>
+  <img src="EventPromo.avif" alt="Event Promo" id="promo-img" ondblclick="enlargeImage()">
+
+  <script>
+    function validatePhone() {
+      const phone = document.getElementById('phone').value;
+      const errorDiv = document.getElementById('phone-error');
+      const phonePattern = /^\d{10}$/;
+      if (!phonePattern.test(phone)) {
+        errorDiv.textContent = "Please enter a valid 10-digit phone number.";
+      } else {
+        errorDiv.textContent = "";
+      }
+    }
+
+    function showFee() {
+      const fee = document.getElementById('event-select').value;
+      const display = document.getElementById('fee-display');
+      display.textContent = fee ? `Event Fee: ₹${fee}` : "";
+    }
+
+    function submitForm() {
+      alert("Thank you for your feedback! Your response has been recorded.");
+    }
+
+    function enlargeImage() {
+      const img = document.getElementById('promo-img');
+      img.classList.toggle("enlarged");
+    }
+
+    function countChars() {
+      const text = document.getElementById('feedback').value;
+      document.getElementById('char-count').textContent = text.length;
+    }
+  </script>
+
+</body>
+</html>
