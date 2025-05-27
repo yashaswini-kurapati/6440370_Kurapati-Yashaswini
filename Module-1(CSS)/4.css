@@ -1,0 +1,17 @@
+/* Fallback background color */
+body {
+  background-color: #e0e7ff;
+  /* Background image with fallback */
+  background-image: url('https://www.transparenttextures.com/patterns/diagmonds.png');
+  background-repeat: repeat;
+  background-size: contain;
+  color: #222;
+}
+
+/* Section headers with linear gradient background */
+section h2 {
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
